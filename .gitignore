@@ -1,0 +1,6 @@
+.env
+Forms/.env
+*.pyc
+Forms/__pycache__/
+MANIFEST
+*.egg-info
