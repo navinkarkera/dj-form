@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
   web:
     build: .
-    command: gunicorn -w 2 --access-logfile - --bind 0.0.0.0:8000 --reload Forms.wsgi
+    command: gunicorn -w 3 --access-logfile - --bind 0.0.0.0:8000 --reload Forms.wsgi
     env_file:
       - .env
     volumes:
