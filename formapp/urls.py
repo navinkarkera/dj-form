@@ -14,17 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from django.contrib import admin
-from allauth.account.views import confirm_email as allauthemailconfirmation
-import formapp
+from formapp import views
 
 urlpatterns = [
-    url(r'^', include('django.contrib.auth.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/account-confirm-email/(?P<key>[-:\w]+)/$',
-        allauthemailconfirmation,
-        name='account_confirm_email'),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^forms/', include('formapp.urls')),
+    url(r'^$', views.FormDetailList.as_view()),
 ]

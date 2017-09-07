@@ -20,6 +20,7 @@ class FormDetail(BaseModel):
     description = models.TextField('Brief about your Form')
     status = models.IntegerField(choices=STATUS)
     fields = ArrayField(JSONField())
+    need_login = models.BooleanField()
 
     def __str__(self):
         return self.title
@@ -27,6 +28,8 @@ class FormDetail(BaseModel):
 
 class FormResponse(BaseModel):
     form = models.ForeignKey(FormDetail, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True)
     response = JSONField()
 
     def __str__(self):
