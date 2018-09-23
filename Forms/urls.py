@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from allauth.account.views import confirm_email as allauthemailconfirmation
-import formapp
+from formapp import views
 
 urlpatterns = [
     url(r'^', include('django.contrib.auth.urls')),
@@ -26,5 +26,7 @@ urlpatterns = [
         allauthemailconfirmation,
         name='account_confirm_email'),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^forms/', include('formapp.urls')),
+    url(r'^forms/', include('formapp.urls', namespace='forms')),
+    url(r'^users/$', views.UserList.as_view()),
+    url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
 ]
